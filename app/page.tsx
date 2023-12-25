@@ -1,18 +1,21 @@
-import { getServerSession } from "next-auth";
-import Link from "next/link";
-import ProductCard from "./components/ProductCard";
+"use client";
 
-import { authOptions } from "./api/auth/authOptions";
-import HeavyComponent from "./components/HeavyComponent";
-
-export default async function Home() {
-  const session = await getServerSession(authOptions);
+export default function Home() {
   return (
     <main>
       <h1>Hello World</h1>
-      <HeavyComponent />
-      <Link href="/users">Users</Link>
-      <ProductCard />
+      <button
+        onClick={async () => {
+          const _ = (await import("lodash")).default;
+
+          const users = [{ name: "c" }, { name: "b" }, { name: "a" }];
+
+          const sorted = _.orderBy(users, ["name"]);
+          console.log(sorted);
+        }}
+      >
+        Show
+      </button>
     </main>
   );
 }
