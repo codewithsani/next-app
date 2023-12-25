@@ -1,18 +1,15 @@
-import Image from "next/image";
+import { getServerSession } from "next-auth";
 import Link from "next/link";
 import ProductCard from "./components/ProductCard";
-import { getServerSession } from "next-auth";
 
-import { Metadata } from "next";
-import HeavyComponent from "./components/HeavyComponent";
 import { authOptions } from "./api/auth/authOptions";
-import { Span } from "next/dist/trace";
+import HeavyComponent from "./components/HeavyComponent";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
   return (
     <main>
-      <h1>Hello {session && <span>{session.user!.name}</span>}</h1>
+      <h1>Hello World</h1>
       <HeavyComponent />
       <Link href="/users">Users</Link>
       <ProductCard />
